@@ -1,74 +1,54 @@
-import logo from './logo.svg';
 import React, { Component } from 'react';
-import './App.css';
-import TodoEditor from './components/TodoEditor';
+import Counter from './components/Counter';
+// import Dropdown from './components/Dropdown';
+// import ColorPicker from './components/ColorPicker';
+import TodoList from './components/TodoList';
 import initialTodos from './todos.json';
 
-
+// const colorPickerOptions = [
+//   { label: 'red', color: '#F44336' },
+//   { label: 'green', color: '#4CAF50' },
+//   { label: 'blue', color: '#2196F3' },
+//   { label: 'grey', color: '#607D8B' },
+//   { label: 'pink', color: '#E91E63' },
+//   { label: 'indigo', color: '#3F51B5' },
+// ];
 
 class App extends Component {
   state = {
     todos: initialTodos,
-    filter: '',
-     // contacts: [],
-    // name: ''
-  }
-  addTodo = text => {
-    const todo = {
-      id: shortid.generate(), 
-      text, 
-      completed: false, 
-    };
-    this.setState(({todos}) => ({
-      todos: [todo, ...todos], 
-    })
-
-    )
   };
-  calculatedCompletedTodos= () => {
-    const {todos} = this.state;
-    return todos.reduce(
+
+  deleteTodo = todoId => {
+    this.setState(prevState => ({
+      todos: prevState.todos.filter(todo => todo.id !== todoId),
+    }));
+  };
+
+  render() {
+    const { todos } = this.state;
+
+    const totalTodoCount = todos.length;
+    const completedTodoCount = todos.reduce(
       (total, todo) => (todo.completed ? total + 1 : total),
       0,
     );
-  }
-  render() {
-    const { todos, filter } = this.state;
-    const totalTodoCount = todos.length;
-    const completedTodoCount = this.calculatedCompletedTodos();
 
     return (
-     <Container>
-<div>
-  <p>Total amount ofitems: {totalTodoCount}</p>
-  <p>Total amount ofitems: {completedTodoCount}</p>
-</div>
-<TodoEditor onSubmit={this.addTodo} />
+      <>
+        <h1>Состояние компонента</h1>
 
+        {/* <Counter initialValue={10} /> */}
+        {/* <Dropdown /> */}
+        {/* <ColorPicker options={colorPickerOptions} /> */}
 
-     </Container>
-    )
+        <div>
+          <p>Общее кол-во: {totalTodoCount}</p>
+          <p>Кол-во выполненных: {completedTodoCount}</p>
+        </div>
+      </>
+    );
   }
 }
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
 
 export default App;

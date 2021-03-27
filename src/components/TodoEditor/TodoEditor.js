@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import './TodoEditor.scss';
+// import './TodoEditor.scss';
 
 class TodoEditor extends Component {
 state = {
@@ -8,17 +8,17 @@ state = {
 handleChage = e => {
     e.preventDefault();
     this.props.onSubmit(this.state.message);
-    this.serState({ message: ''})
+    this.setState({ message: ''})
 }
  render() {
      return (
-         <form className="TodoEditor" onSubmit={this.handleSubmit}>
+         <form  onSubmit={this.handleSubmit}>
 <textarea 
-className='TodoEditor__textarea'
+// className='TodoEditor__textarea'
 value={this.state.message}
 onChage={this.handleChage}
 ></textarea>
-<button type='submit' className='TodoEditor__button'> Safe </button>
+<button type='submit'> Safe </button>
 
          </form>
      )
