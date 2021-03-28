@@ -4,6 +4,7 @@ class Form extends Component {
   state = {
     name: '',
     tag: '',
+    experience: 'junior',
   }
   handleChange = event => {
 
@@ -37,6 +38,17 @@ class Form extends Component {
     <label>
       surname <input type='text' name='tag' value={this.state.tag} onChange={this.handleChange}></input>
     </label>
+<p> Your level</p>
+<label>
+<input type='radio' name='experience' value='junior' onChange={this.handleChange}  checked={this.state.experience===junior}></input>
+</label> 
+<label><input type='radio' name='experience' value='middle' onChange={this.handleChange} checked={this.state.experience===middle}></input>
+</label>
+<label>  <input type='radio' name='experience' value='senior' onChange={this.handleChange} checked={this.state.experience===senior}></input>
+</label>
+
+
+
     <button type='submit' >
       Send
     </button>
