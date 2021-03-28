@@ -5,6 +5,7 @@ class Form extends Component {
     name: '',
     tag: '',
     experience: 'junior',
+    licence: false,
   }
   handleChange = event => {
 
@@ -18,6 +19,11 @@ class Form extends Component {
     console.log(this.state);
     this.props.onSubmit(this.state);
     this.reset();
+  }
+  handleLicenceChange = e => {
+    console.log(e.currentTarget.checked);
+
+    this.setState({licence: e.currentTarget.checked})
   }
   reset = () => {
     this.setState( {
@@ -47,15 +53,15 @@ class Form extends Component {
 <label>  <input type='radio' name='experience' value='senior' onChange={this.handleChange} checked={this.state.experience===senior}></input>
 </label>
 
+<label type ='checkbox' name='licence' checked={this.state.licence} onChange={this.handleLicenceChange}>Agree</label>
 
 
-    <button type='submit' >
+    <button type='submit' disabled={!this.state.licence}>
       Send
     </button>
   </form>
   
-  
-  
+ 
   
     )
   }

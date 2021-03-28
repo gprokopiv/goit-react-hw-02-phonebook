@@ -5,6 +5,16 @@ class TodoEditor extends Component {
 state = {
     message: '',
 }
+// toggleCompleted = todoId =>
+// {
+//     this.setState(({ todos }) => ({
+//         todos: todos.map(todo =>
+//             todo.id === todoId ? {...todo, completed: !todo.completed} : todo,
+//             )
+//     })
+
+//     )
+// }
 handleChage = e => {
     e.preventDefault();
     this.props.onSubmit(this.state.message);
@@ -16,7 +26,7 @@ handleChage = e => {
 <textarea 
 // className='TodoEditor__textarea'
 value={this.state.message}
-onChage={this.handleChage}
+onChange={this.handleChage}
 ></textarea>
 <button type='submit'> Safe </button>
 
