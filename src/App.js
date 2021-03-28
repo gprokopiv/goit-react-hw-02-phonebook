@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 // import ColorPicker from './components/ColorPicker';
 // import TodoList from './components/TodoList';
 import initialTodos from './todos.json';
-import Container from './components/Container'
+import Container from './components/Container';
+import Form from './components/Form';
 
 // const colorPickerOptions = [
 //   { label: 'red', color: '#F44336' },
@@ -56,37 +57,17 @@ import Container from './components/Container'
 class App extends Component {
 state = {
   todos: initialTodos,
-  name: '',
-  tag: '',
+ 
 }
-handleChange = event => {
-
-  const { name, value } = event.currentTarget;
-  this.setState({      [name]: value
-
-  })
+formSubmitHandler = data => {
+  console.log(data)
 }
-handleSubmit = e => {
-  e.preventDefault();
-  console.log(this.state);
-}
-
 render() {
 
 
   return(
     <Container>
-<form onSubmit={this.handleSubmit}>
-  <label>
-    name <input type='text' name='name' value={this.state.name} onChange={this.handleChange}></input>
-  </label>
-  <label>
-    surname <input type='text' name='tag' value={this.state.tag} onChange={this.handleChange}></input>
-  </label>
-  <button type='submit' >
-    Send
-  </button>
-</form>
+      <Form onSubmit={this.formSubmitHandler}/>
 
 
 
